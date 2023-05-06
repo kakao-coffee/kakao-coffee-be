@@ -20,23 +20,27 @@ public class Member extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "point", nullable = false)
+    private Long point;
+
+    @Column(name = "member_name", nullable = false, unique = true)
     private String memberName;
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(name = "nick_name", nullable = false)
     private String nickName;
 
-    @Column(nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
 
     public static Member of(SignupRequestDto signupRequestDto, String encodedPassword) {
         return Member.builder()
+                .point(0L)
                 .memberName(signupRequestDto.getMemberName())
                 .password(encodedPassword)
                 .nickName(signupRequestDto.getNickName())
