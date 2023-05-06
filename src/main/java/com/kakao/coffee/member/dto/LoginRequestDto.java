@@ -15,4 +15,5 @@ public class LoginRequestDto {
 
     @Schema(example = "password")
     private String password;
+
 }
