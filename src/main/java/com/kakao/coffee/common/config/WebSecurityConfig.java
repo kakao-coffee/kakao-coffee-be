@@ -30,8 +30,11 @@ import java.util.ArrayList;
 @EnableWebSecurity // 스프링 Security 지원을 가능하게 함
 @EnableGlobalMethodSecurity(securedEnabled = true) // @Secured 어노테이션 활성화
 public class WebSecurityConfig implements WebMvcConfigurer {
+
     private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
+
     private final JwtUtil jwtUtil;
 
     @Bean

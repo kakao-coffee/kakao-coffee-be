@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Builder
 public class MemberResponseDto extends Timestamped {
+
     @Schema(type = "integer", example = "2")
     private Long id;
 

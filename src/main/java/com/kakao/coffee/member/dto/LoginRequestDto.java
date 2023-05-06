@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 public class LoginRequestDto {
+
     @Schema(example = "userId")
     private String userId;
 

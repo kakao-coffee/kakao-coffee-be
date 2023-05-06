@@ -11,6 +11,7 @@ import java.util.Collection;
 public class UserDetailsImpl implements UserDetails {
 
     private final Member member;
+
     private final String userId;
 
     public UserDetailsImpl(Member member, String userId) {
