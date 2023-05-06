@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ControllerUseTime {
     private static final Logger log = LoggerFactory.getLogger(ControllerUseTime.class);
 
-    @Around(value = "execution(public * com.openvelog.openvelogbe.*.controller..*(..))")
+    @Around(value = "execution(public * com.kakaoCoffee.*.controller..*(..))")
     public synchronized Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
         // 측정 시작 시간
         long startTime = System.currentTimeMillis();
