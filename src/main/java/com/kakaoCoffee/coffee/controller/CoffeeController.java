@@ -1,6 +1,7 @@
 package com.kakaoCoffee.coffee.controller;
 
 import com.kakaoCoffee.coffee.dto.CoffeeInfoResponseDto;
+import com.kakaoCoffee.coffee.dto.CoffeeSaleResponseDto;
 import com.kakaoCoffee.common.dto.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -35,6 +36,16 @@ public class CoffeeController {
             description = "모든 커피의 unique id, 커피의 이름, 커피의 가격을 조회"
     )
     public ApiResponse<ArrayList<CoffeeInfoResponseDto>> getCoffees() {
+        // TODO: Apply service and change return value null.
+        return ApiResponse.successOf(HttpStatus.OK, null);
+    }
+
+    @GetMapping("/popular-coffees")
+    @Operation(
+            summary = "최근 7일간 인기 있는 커피 메뉴 3개를 조회하는 API",
+            description = "커피 id, 커피 이름, 커피 판매 횟수 3개를 반환"
+    )
+    public ApiResponse<ArrayList<CoffeeSaleResponseDto>> getPopularCoffees() {
         // TODO: Apply service and change return value null.
         return ApiResponse.successOf(HttpStatus.OK, null);
     }
