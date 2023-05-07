@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
-@Tag(name = "커피 주문 및 조회 관련 API")
+@Tag(name = "커피 메뉴 조회 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/coffees")
