@@ -24,4 +24,7 @@ public class Coffee extends Timestamped {
     @Column(name = "cost", nullable = false)
     private Long cost;
 
+    @Column(name = "sale_count", nullable = false)
+    private Long saleCount;
+
 }
