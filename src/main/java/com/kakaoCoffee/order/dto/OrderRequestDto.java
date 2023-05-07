@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class OrderDto {
+public class OrderRequestDto {
 
     @Schema(example = "13")
     private Long coffeeId;
