@@ -23,7 +23,7 @@ public class Order extends Timestamped {
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "coffee_id")
-    private Coffee coffee;
+    @JoinColumn(name = "beverage_id")
+    private Beverage beverage;
 
 }

@@ -11,7 +11,7 @@ import lombok.Setter;
 public class OrderRequestDto {
 
     @Schema(example = "13")
-    private Long coffeeId;
+    private Long beverageId;
 
     @Schema(example = "21")
     private Long memberId;

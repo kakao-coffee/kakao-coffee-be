@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity(name = "coffees")
+@Entity(name = "beverages")
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Coffee extends Timestamped {
+public class Beverage extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

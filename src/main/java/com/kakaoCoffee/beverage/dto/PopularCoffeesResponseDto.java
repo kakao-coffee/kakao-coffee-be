@@ -1,6 +1,5 @@
-package com.kakaoCoffee.coffee.dto;
+package com.kakaoCoffee.beverage.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +11,6 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class PopularCoffeesResponseDto {
 
-    private ArrayList<CoffeeSaleResponseDto> popularCoffees;
+    private ArrayList<BeverageSaleResponseDto> popularCoffees;
 
 }
