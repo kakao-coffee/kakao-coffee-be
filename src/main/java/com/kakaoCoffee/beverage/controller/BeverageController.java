@@ -20,16 +20,6 @@ import java.util.ArrayList;
 @RequestMapping("/api/beverages")
 public class BeverageController {
 
-    @GetMapping("/{beverageId}")
-    @Operation(
-            summary = "음료의 정보를 조회하는 API",
-            description = "음료의 unique id, 음료의 이름, 음료의 가격을 조회"
-    )
-    public ApiResponse<BeverageInfoResponseDto> getCoffee(@PathVariable Long beverageId) {
-        // TODO: Apply service and change return value null.
-        return ApiResponse.successOf(HttpStatus.OK, null);
-    }
-
     @GetMapping("/all")
     @Operation(
             summary = "모든 음료의 정보를 조회하는 API",
