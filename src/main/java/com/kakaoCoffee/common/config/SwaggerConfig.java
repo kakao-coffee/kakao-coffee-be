@@ -16,7 +16,7 @@ class SwaggerConfig {
 
         Info info = new Info()
                 .version("v1.0.0")
-                .title("REVIEW KURLY 🖋")
+                .title("KAKAO COFFEE ☕")
                 .description("API Description");
 
         // SecuritySecheme명
