@@ -20,7 +20,7 @@ import java.util.ArrayList;
 @RequestMapping("/api/beverages")
 public class BeverageController {
 
-    @GetMapping("/all")
+    @GetMapping
     @Operation(
             summary = "모든 음료의 정보를 조회하는 API",
             description = "모든 음료의 unique id, 음료의 이름, 음료의 가격을 조회"
