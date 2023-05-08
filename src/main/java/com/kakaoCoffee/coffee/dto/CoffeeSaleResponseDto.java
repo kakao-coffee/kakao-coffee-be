@@ -17,6 +17,6 @@ public class CoffeeSaleResponseDto {
     private String coffeeName;
 
     @Schema(example = "10")
-    private String saleCount;
+    private Long saleCount;
 
 }
