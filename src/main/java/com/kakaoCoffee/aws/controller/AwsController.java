@@ -1,6 +1,7 @@
 package com.kakaoCoffee.aws.controller;
 
 import com.kakaoCoffee.common.dto.ApiResponse;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/aws")
+@Hidden
 public class AwsController {
     @GetMapping("/health-check")
     @Operation(
