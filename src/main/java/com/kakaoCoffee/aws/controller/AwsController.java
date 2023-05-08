@@ -9,14 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "aws related controller")
+@Tag(name = "AWS 관련 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/aws")
 public class AwsController {
     @GetMapping("/health-check")
-    @Operation(summary = "Health check this instance",
-            description = "This api is called by AWS Load Balancer to check status of this instance")
+    @Operation(
+            summary = "해당 인스턴스트를 health-check하는 API",
+            description = "인스턴스의 상태를 확인하기 위해 AWS 로드밸런서가 호출하는 API"
+    )
     public ApiResponse<String> healthCheck() {
         return ApiResponse.successOf(HttpStatus.OK, "up");
     }
