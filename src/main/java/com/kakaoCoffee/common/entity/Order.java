@@ -26,4 +26,7 @@ public class Order extends Timestamped {
     @JoinColumn(name = "beverage_id")
     private Beverage beverage;
 
+    @Column(name = "cost", nullable = false)
+    private Long cost;
+
 }
