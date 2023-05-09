@@ -1,5 +1,6 @@
 package com.kakaoCoffee.common.entity;
 
+import com.kakaoCoffee.member.customEnum.MemberRoleEnum;
 import com.kakaoCoffee.member.dto.SignupRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,14 +21,18 @@ public class Member extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "point", nullable = false)
-    private Long point;
-
     @Column(name = "member_name", nullable = false, unique = true)
     private String memberName;
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "point", nullable = false)
+    private Long point;
+
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private MemberRoleEnum role;
 
     @Column(name = "nick_name", nullable = false)
     private String nickName;

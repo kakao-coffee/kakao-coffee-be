@@ -1,6 +1,6 @@
 package com.kakaoCoffee.common.security;
 
-import com.kakaoCoffee.common.entity.Member;
+import com.kakaoCoffee.member.customEnum.MemberRoleEnum;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,24 +8,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class UserDetailsImpl implements UserDetails {
+public class MemberDetailsImpl implements UserDetails {
 
-    private final Member member;
+    private final MemberRoleEnum memberRoleEnum;
 
-    private final String userId;
+    private final String memberName;
 
-    public UserDetailsImpl(Member member, String userId) {
-        this.member = member;
-        this.userId = userId;
-    }
-
-    public Member getUser() {
-        return member;
+    public MemberDetailsImpl(MemberRoleEnum memberRoleEnum, String memberName) {
+        this.memberRoleEnum = memberRoleEnum;
+        this.memberName = memberName;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String authority = "ROLE_USER";
+        String authority = memberRoleEnum.getAuthority();
 
         SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(authority);
         Collection<GrantedAuthority> authorities = new ArrayList<>();
@@ -36,7 +32,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userId;
+        return this.memberName;
     }
 
     @Override

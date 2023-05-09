@@ -1,7 +1,7 @@
 package com.kakaoCoffee.common.jwt;
 
 
-import com.kakaoCoffee.common.security.UserDetailsServiceImpl;
+import com.kakaoCoffee.common.security.MemberDetailsServiceImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;
@@ -33,7 +33,7 @@ public class JwtUtil {
     private String secretKey;
     private Key key;
     private final SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-    private final UserDetailsServiceImpl userDetailsService;
+    private final MemberDetailsServiceImpl userDetailsService;
 
     @PostConstruct
     public void init() {
