@@ -23,4 +23,13 @@ public class Timestamped {
     @Column
     private LocalDateTime modifiedAt;
 
+    @Column
+    private LocalDateTime deletedAt;
+
+    @Column
+    private String modifiedBy;
+
+    @Column
+    private String createdBy;
+
 }
