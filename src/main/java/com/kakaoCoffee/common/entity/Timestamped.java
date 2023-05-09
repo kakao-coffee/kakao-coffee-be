@@ -5,9 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,20 +14,14 @@ import java.time.LocalDateTime;
 public class Timestamped {
 
     @CreatedDate
-    @Column(updatable = false)
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column
+    @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
-    @Column
+    @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
-
-    @Column
-    private String modifiedBy;
-
-    @Column
-    private String createdBy;
 
 }
