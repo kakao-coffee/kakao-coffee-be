@@ -29,7 +29,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
         try (OutputStream os = response.getOutputStream()) {
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writeValue(os, ApiResponse.failOf(HttpStatus.FORBIDDEN, ERROR_RESPONSE_DTO));
+            objectMapper.writeValue(os, ERROR_RESPONSE_DTO);
             os.flush();
         }
     }

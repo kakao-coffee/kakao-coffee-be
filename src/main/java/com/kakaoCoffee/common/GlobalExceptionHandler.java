@@ -27,79 +27,71 @@ public class GlobalExceptionHandler {
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiResponse<ErrorResponseDto>> handleException(Exception e) {
+    public ResponseEntity<ErrorResponseDto> handleException(Exception e) {
         log.error(e.toString() + " occurred: {}", e.getMessage());
         ErrorResponseDto errorResponseDto = ErrorResponseDto.of(ErrorType.EXCEPTION, e.getMessage());
-        ApiResponse<ErrorResponseDto> errorResponseData = ApiResponse.failOf(HttpStatus.INTERNAL_SERVER_ERROR, errorResponseDto);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponseData);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponseDto);
     }
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ApiResponse<ErrorResponseDto>> handleRuntimeException(RuntimeException e) {
+    public ResponseEntity<ErrorResponseDto> handleRuntimeException(RuntimeException e) {
         log.error(e.toString() + " occurred: {}", e.getMessage());
         ErrorResponseDto errorResponseDto = ErrorResponseDto.of(ErrorType.RUNTIME_EXCEPTION, e.getMessage());
-        ApiResponse<ErrorResponseDto> errorResponseData = ApiResponse.failOf(HttpStatus.INTERNAL_SERVER_ERROR, errorResponseDto);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponseData);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponseDto);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ApiResponse<ErrorResponseDto>> handleEntityNotFoundException(EntityNotFoundException e) {
+    public ResponseEntity<ErrorResponseDto> handleEntityNotFoundException(EntityNotFoundException e) {
         log.error(e.toString() + " occurred: {}", e.getMessage());
         ErrorResponseDto errorResponseDto = ErrorResponseDto.of(ErrorType.ENTITY_NOT_FOUND_EXCEPTION, e.getMessage());
-        ApiResponse<ErrorResponseDto> errorResponseData = ApiResponse.failOf(HttpStatus.BAD_REQUEST, errorResponseDto);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseData);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseDto);
     }
 
     @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<ApiResponse<ErrorResponseDto>> handleValidationException(ValidationException e) {
+    public ResponseEntity<ErrorResponseDto> handleValidationException(ValidationException e) {
         log.error(e.toString() + " occurred: {}", e.getMessage());
         ErrorResponseDto errorResponseDto = ErrorResponseDto.of(ErrorType.VALIDATION_EXCEPTION, e.getMessage());
-        ApiResponse<ErrorResponseDto> errorResponseData = ApiResponse.failOf(HttpStatus.BAD_REQUEST, errorResponseDto);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseData);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseDto);
     }
 
     @ExceptionHandler(JwtException.class)
-    public ResponseEntity<?> handleJwtException(JwtException e) {
+    public ResponseEntity<ErrorResponseDto> handleJwtException(JwtException e) {
         log.error(e.toString() + " occurred: {}", e.getMessage());
         ErrorResponseDto errorResponseDto = ErrorResponseDto.of(ErrorType.JWT_EXCEPTION, e.getMessage());
-        ApiResponse<ErrorResponseDto> errorResponseData = ApiResponse.failOf(HttpStatus.UNAUTHORIZED, errorResponseDto);
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponseData);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponseDto);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException e) {
+    public ResponseEntity<ErrorResponseDto> handleIllegalArgumentException(IllegalArgumentException e) {
         log.error(e.toString() + " occurred: {}", e.getMessage());
         ErrorResponseDto errorResponseDto = ErrorResponseDto.of(ErrorType.ILLEGAL_ARGUMENT_EXCEPTION, e.getMessage());
-        ApiResponse<ErrorResponseDto> errorResponseData = ApiResponse.failOf(HttpStatus.BAD_REQUEST, errorResponseDto);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseData);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseDto);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<?> handleAccessDeniedException(AccessDeniedException e) {
+    public ResponseEntity<ErrorResponseDto> handleAccessDeniedException(AccessDeniedException e) {
         log.error(e.toString() + " occurred: {}", e.getMessage());
         ErrorResponseDto errorResponseDto = ErrorResponseDto.of(ErrorType.ACCESS_DENIED_EXCEPTION, e.getMessage());
-        ApiResponse<ErrorResponseDto> errorResponseData = ApiResponse.failOf(HttpStatus.BAD_REQUEST, errorResponseDto);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseData);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseDto);
     }
 
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<?> handleAccessDeniedException(BadCredentialsException e) {
+    public ResponseEntity<ErrorResponseDto> handleAccessDeniedException(BadCredentialsException e) {
         log.error(e.toString() + " occurred: {}", e.getMessage());
         ErrorResponseDto errorResponseDto = ErrorResponseDto.of(ErrorType.BAD_CREDENTIALS_EXCEPTION, e.getMessage());
-        ApiResponse<ErrorResponseDto> errorResponseData = ApiResponse.failOf(HttpStatus.UNAUTHORIZED, errorResponseDto);
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponseData);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponseDto);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
-        BindingResult bindingResult = e.getBindingResult();
-        Map<String, String> errors = new HashMap<>();
-        for (FieldError error : bindingResult.getFieldErrors()) {
-            errors.put(error.getField(), error.getDefaultMessage());
-        }
-        ErrorResponseDto errorResponseDto = ErrorResponseDto.of(ErrorType.VALIDATION_EXCEPTION, errors.toString());
-        ApiResponse<ErrorResponseDto> errorResponseData = ApiResponse.failOf(HttpStatus.BAD_REQUEST, errorResponseDto);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseData);
-    }
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
+//        BindingResult bindingResult = e.getBindingResult();
+//        Map<String, String> errors = new HashMap<>();
+//        for (FieldError error : bindingResult.getFieldErrors()) {
+//            errors.put(error.getField(), error.getDefaultMessage());
+//        }
+//        ErrorResponseDto errorResponseDto = ErrorResponseDto.of(ErrorType.VALIDATION_EXCEPTION, errors.toString());
+//        ApiResponse<ErrorResponseDto> errorResponseData = ApiResponse.failOf(HttpStatus.BAD_REQUEST, errorResponseDto);
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseData);
+//    }
 }

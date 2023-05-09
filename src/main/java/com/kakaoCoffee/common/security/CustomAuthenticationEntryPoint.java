@@ -31,7 +31,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         try (OutputStream os = response.getOutputStream()) {
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writeValue(os, ApiResponse.failOf(HttpStatus.UNAUTHORIZED, ERROR_RESPONSE_DTO));
+            objectMapper.writeValue(os, ERROR_RESPONSE_DTO);
             os.flush();
         }
     }
