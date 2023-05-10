@@ -18,7 +18,7 @@ public class MemberResponseDto extends Timestamped {
     private Long id;
 
     @Schema(example = "apple123")
-    private String memberName;
+    private String memberId;
 
     @Schema(example = "15000")
     private Long point;
@@ -34,7 +34,7 @@ public class MemberResponseDto extends Timestamped {
     public static MemberResponseDto from(Member member) {
         return MemberResponseDto.builder()
                 .id(member.getId())
-                .memberName(member.getMemberName())
+                .memberId(member.getMemberId())
                 .point(member.getPoint())
                 .nickName(member.getNickName())
                 .email(member.getEmail())

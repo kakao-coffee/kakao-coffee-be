@@ -12,11 +12,11 @@ public class MemberDetailsImpl implements UserDetails {
 
     private final MemberRoleEnum memberRoleEnum;
 
-    private final String memberName;
+    private final String memberId;
 
-    public MemberDetailsImpl(MemberRoleEnum memberRoleEnum, String memberName) {
+    public MemberDetailsImpl(MemberRoleEnum memberRoleEnum, String memberId) {
         this.memberRoleEnum = memberRoleEnum;
-        this.memberName = memberName;
+        this.memberId = memberId;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MemberDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.memberName;
+        return this.memberId;
     }
 
     @Override

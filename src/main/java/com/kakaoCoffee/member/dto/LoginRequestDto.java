@@ -11,7 +11,7 @@ import lombok.Setter;
 public class LoginRequestDto {
 
     @Schema(example = "MyIdIsThis")
-    private String memberName;
+    private String memberId;
 
     @Schema(example = "password")
     private String password;

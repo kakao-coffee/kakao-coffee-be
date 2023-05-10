@@ -21,8 +21,8 @@ public class Member extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "member_name", nullable = false, unique = true)
-    private String memberName;
+    @Column(name = "member_id", nullable = false, unique = true)
+    private String memberId;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -45,7 +45,7 @@ public class Member extends Timestamped {
 
     public static Member from(SignupRequestDto signupRequestDto, String encodedPassword, MemberRoleEnum memberRoleEnum) {
         return Member.builder()
-                .memberName(signupRequestDto.getMemberName())
+                .memberId(signupRequestDto.getMemberId())
                 .password(encodedPassword)
                 .point(0L)
                 .role(memberRoleEnum)

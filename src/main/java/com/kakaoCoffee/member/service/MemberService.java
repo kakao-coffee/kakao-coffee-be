@@ -30,11 +30,11 @@ public class MemberService {
 
     @Transactional
     public MemberResponseDto signup(SignupRequestDto signupRequestDto) {
-        String memberName = signupRequestDto.getMemberName();
+        String memberId = signupRequestDto.getMemberId();
         String encodedPassword = passwordEncoder.encode(signupRequestDto.getPassword());
 
-        // memberName (member ID) 중복 확인
-        Optional<Member> found = memberRepository.findByMemberName(memberName);
+        // memberId (member ID) 중복 확인
+        Optional<Member> found = memberRepository.findByMemberId(memberId);
         if (found.isPresent()) {
             throw new IllegalArgumentException(ErrorMessage.USERID_DUPLICATION.getMessage());
         }
@@ -49,7 +49,7 @@ public class MemberService {
     public MemberResponseDto login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
 
         // 사용자 확인
-        Member member = memberRepository.findByMemberName(loginRequestDto.getMemberName()).orElseThrow(
+        Member member = memberRepository.findByMemberId(loginRequestDto.getMemberId()).orElseThrow(
                 () -> new EntityNotFoundException(ErrorMessage.WRONG_USERID.getMessage())
         );
 
@@ -57,13 +57,13 @@ public class MemberService {
         if (!passwordEncoder.matches(loginRequestDto.getPassword(), member.getPassword())) {
             throw new BadCredentialsException(ErrorMessage.WRONG_PASSWORD.getMessage());
         }
-        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(member.getMemberName()));
+        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(member.getMemberId()));
 
         return MemberResponseDto.from(member);
     }
 
-    public Boolean checkMemberNameDuplication(String memberName) {
-        return memberRepository.findByMemberName(memberName).isPresent();
+    public Boolean checkMemberIdDuplication(String memberId) {
+        return memberRepository.findByMemberId(memberId).isPresent();
     }
 
 }
