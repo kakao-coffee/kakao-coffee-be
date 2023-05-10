@@ -37,17 +37,18 @@ public class Member extends Timestamped {
     @Column(name = "nick_name", nullable = false)
     private String nickName;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
 
-    public static Member of(SignupRequestDto signupRequestDto, String encodedPassword) {
+    public static Member from(SignupRequestDto signupRequestDto, String encodedPassword, MemberRoleEnum memberRoleEnum) {
         return Member.builder()
-                .point(0L)
                 .memberName(signupRequestDto.getMemberName())
                 .password(encodedPassword)
+                .point(0L)
+                .role(memberRoleEnum)
                 .nickName(signupRequestDto.getNickName())
                 .email(signupRequestDto.getEmail())
                 .birthday(signupRequestDto.getBirthday())

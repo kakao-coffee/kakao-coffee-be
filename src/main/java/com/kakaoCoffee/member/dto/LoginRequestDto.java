@@ -10,8 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class LoginRequestDto {
 
-    @Schema(example = "userId")
-    private String userId;
+    @Schema(example = "MyIdIsThis")
+    private String memberName;
 
     @Schema(example = "password")
     private String password;
