@@ -1,5 +1,6 @@
 package com.kakaoCoffee.member.controller;
 
+import com.kakaoCoffee.common.dto.ErrorResponseDto;
 import com.kakaoCoffee.common.security.MemberDetailsImpl;
 import com.kakaoCoffee.member.dto.LoginRequestDto;
 import com.kakaoCoffee.member.dto.MemberResponseDto;
@@ -8,9 +9,15 @@ import com.kakaoCoffee.member.service.MemberService;
 import com.kakaoCoffee.pointHistory.dto.PointChargeRequestDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +41,19 @@ public class MemberController {
 
     @PostMapping("/login")
     @Operation(summary = "로그인")
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200", description = "로그인 성공", useReturnTypeSchema = true
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "로그인 실패",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            examples = @ExampleObject(value = "{ \"errorType\": \"ILLEGAL_ARGUMENT_EXCEPTION\", \n\"errorMessage\":\"MEMBER_NOT_FOUND\" }")
+                    )
+            )
+    })
     public ResponseEntity<MemberResponseDto> login(
             @RequestBody LoginRequestDto loginRequestDto,
             @Parameter(hidden = true) HttpServletResponse response

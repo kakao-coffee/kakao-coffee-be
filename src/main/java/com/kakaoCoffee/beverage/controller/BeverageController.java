@@ -4,6 +4,7 @@ import com.kakaoCoffee.beverage.dto.BeverageInfoResponseDto;
 import com.kakaoCoffee.beverage.dto.BeverageSaleResponseDto;
 import com.kakaoCoffee.beverage.service.BeverageService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,5 +1,6 @@
 package com.kakaoCoffee.common.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +9,9 @@ import lombok.Setter;
 @Setter
 @Builder
 public class ErrorResponseDto {
+
     ErrorType errorType;
+
     String errorMessage;
 
     public static ErrorResponseDto of(ErrorType errorType, String errorMessage) {
