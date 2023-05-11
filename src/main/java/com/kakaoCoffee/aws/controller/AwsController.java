@@ -1,6 +1,5 @@
 package com.kakaoCoffee.aws.controller;
 
-import com.kakaoCoffee.common.dto.ApiResponse;
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,6 +1,5 @@
 package com.kakaoCoffee.member.controller;
 
-import com.kakaoCoffee.common.dto.ErrorResponseDto;
 import com.kakaoCoffee.common.security.MemberDetailsImpl;
 import com.kakaoCoffee.member.dto.LoginRequestDto;
 import com.kakaoCoffee.member.dto.MemberResponseDto;

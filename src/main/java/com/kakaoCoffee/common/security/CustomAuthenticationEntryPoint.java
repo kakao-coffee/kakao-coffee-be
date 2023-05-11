@@ -1,10 +1,9 @@
 package com.kakaoCoffee.common.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kakaoCoffee.common.dto.ApiResponse;
-import com.kakaoCoffee.common.dto.ErrorMessage;
+import com.kakaoCoffee.common.customEnum.ErrorMessage;
+import com.kakaoCoffee.common.customEnum.ErrorType;
 import com.kakaoCoffee.common.dto.ErrorResponseDto;
-import com.kakaoCoffee.common.dto.ErrorType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
@@ -18,8 +17,10 @@ import java.io.OutputStream;
 
 @Component
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
-    private static final ErrorResponseDto ERROR_RESPONSE_DTO = ErrorResponseDto.of(ErrorType.AUTHENTICATION_EXCEPTION,
-            ErrorMessage.AUTHENTICATION_FAILED.getMessage());
+    private static final ErrorResponseDto ERROR_RESPONSE_DTO = ErrorResponseDto.of(
+            ErrorType.AUTHENTICATION_EXCEPTION,
+            ErrorMessage.AUTHENTICATION_FAILED.getMessage()
+    );
 
     @Override
     public void commence(HttpServletRequest request,

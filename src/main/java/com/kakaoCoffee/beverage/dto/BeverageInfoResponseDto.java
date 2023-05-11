@@ -1,7 +1,5 @@
 package com.kakaoCoffee.beverage.dto;
 
-import com.kakaoCoffee.common.dto.ErrorResponseDto;
-import com.kakaoCoffee.common.dto.ErrorType;
 import com.kakaoCoffee.common.entity.Beverage;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

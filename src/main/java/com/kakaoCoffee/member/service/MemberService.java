@@ -1,6 +1,6 @@
 package com.kakaoCoffee.member.service;
 
-import com.kakaoCoffee.common.dto.ErrorMessage;
+import com.kakaoCoffee.common.customEnum.ErrorMessage;
 import com.kakaoCoffee.common.entity.Member;
 import com.kakaoCoffee.common.jwt.JwtUtil;
 import com.kakaoCoffee.common.repository.MemberRepository;
@@ -37,7 +37,7 @@ public class MemberService {
         // memberName (member ID) 중복 확인
         Optional<Member> found = memberRepository.findByMemberName(memberName);
         if (found.isPresent()) {
-            throw new IllegalArgumentException(ErrorMessage.USERID_DUPLICATION.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.MEMBER_NAME_DUPLICATION.getMessage());
         }
 
         Member newMember = Member.from(signupRequestDto, encodedPassword, MemberRoleEnum.USER);
@@ -51,7 +51,7 @@ public class MemberService {
 
         // 사용자 확인
         Member member = memberRepository.findByMemberName(loginRequestDto.getMemberName()).orElseThrow(
-                () -> new EntityNotFoundException(ErrorMessage.WRONG_USERID.getMessage())
+                () -> new EntityNotFoundException(ErrorMessage.WRONG_MEMBER_NAME.getMessage())
         );
 
         // 비밀번호 확인
