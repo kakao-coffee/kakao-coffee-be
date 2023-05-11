@@ -8,6 +8,7 @@ import com.kakaoCoffee.member.customEnum.MemberRoleEnum;
 import com.kakaoCoffee.member.dto.LoginRequestDto;
 import com.kakaoCoffee.member.dto.MemberResponseDto;
 import com.kakaoCoffee.member.dto.SignupRequestDto;
+import com.kakaoCoffee.pointHistory.dto.PointChargeRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -62,8 +63,20 @@ public class MemberService {
         return MemberResponseDto.from(member);
     }
 
+    @Transactional
     public Boolean checkMemberNameDuplication(String memberName) {
         return memberRepository.findByMemberName(memberName).isPresent();
+    }
+
+    @Transactional
+    public MemberResponseDto chargePoint(PointChargeRequestDto pointChargeRequestDto, String memberName) {
+        Member member = memberRepository.findByMemberName(memberName).orElseThrow(
+                () -> new EntityNotFoundException(com.kakaoCoffee.common.customEnum.ErrorMessage.MEMBER_NOT_FOUND.getMessage())
+        );
+
+        member.setPoint(member.getPoint() + pointChargeRequestDto.getPointAmount());
+
+        return MemberResponseDto.from(member);
     }
 
 }

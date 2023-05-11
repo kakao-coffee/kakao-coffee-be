@@ -2,10 +2,7 @@ package com.kakaoCoffee.common.entity;
 
 import com.kakaoCoffee.member.customEnum.MemberRoleEnum;
 import com.kakaoCoffee.member.dto.SignupRequestDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,6 +24,7 @@ public class Member extends Timestamped {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Setter
     @Column(name = "point", nullable = false)
     private Long point;
 
