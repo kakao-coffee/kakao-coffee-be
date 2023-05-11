@@ -11,7 +11,9 @@ public enum ErrorMessage {
     WRONG_USERNAME("username이 일치하지 않습니다."),
     WRONG_ADMIN_PASSWORD("관리자 패스워드가 틀려 등록이 불가능합니다."),
     WRONG_PASSWORD("패스워드가 틀렸습니다."),
-    WRONG_JWT_TOKEN("JWT Token이 잘못되었습니다.");
+    WRONG_JWT_TOKEN("JWT Token이 잘못되었습니다."),
+
+    NOT_ENOUGH_POINT("포인트가 부족합니다.");
 
     String message;
 

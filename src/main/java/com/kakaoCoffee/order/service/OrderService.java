@@ -26,8 +26,8 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     @Transactional
-    public OrderResponseDto orderBeverage(OrderRequestDto orderRequestDto) {
-        Member member = memberRepository.findById(orderRequestDto.getMemberName()).orElseThrow(
+    public OrderResponseDto orderBeverage(OrderRequestDto orderRequestDto, String memberName) {
+        Member member = memberRepository.findByMemberName(memberName).orElseThrow(
                 () -> new EntityNotFoundException(ErrorMessage.MEMBER_NOT_FOUND.getMessage())
         );
 
@@ -36,6 +36,12 @@ public class OrderService {
         );
 
         Long cost = beverage.getCost();
+
+        if (member.getPoint() < cost) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_ENOUGH_POINT.getMessage());
+        } else {
+            member.setPoint(member.getPoint() - cost);
+        }
 
         Order newOrder = orderRepository.save(Order.from(member, beverage, cost));
 

@@ -13,7 +13,4 @@ public class OrderRequestDto {
     @Schema(example = "13")
     private Long beverageId;
 
-    @Schema(example = "21")
-    private Long memberName;
-
 }

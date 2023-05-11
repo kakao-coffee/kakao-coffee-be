@@ -1,14 +1,17 @@
 package com.kakaoCoffee.order.controller;
 
 import com.kakaoCoffee.common.entity.Order;
+import com.kakaoCoffee.common.security.MemberDetailsImpl;
 import com.kakaoCoffee.order.dto.OrderRequestDto;
 import com.kakaoCoffee.order.dto.OrderResponseDto;
 import com.kakaoCoffee.order.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -27,8 +30,11 @@ public class OrderController {
             summary = "커피를 주문하는 API",
             description = "사용자 식별값, 커피 id를 받아 커피를 주문하는 API"
     )
-    public ResponseEntity<OrderResponseDto> orderBeverage(OrderRequestDto orderRequestDto) {
-        return ResponseEntity.ok(orderService.orderBeverage(orderRequestDto));
+    public ResponseEntity<OrderResponseDto> orderBeverage(
+            OrderRequestDto orderRequestDto,
+            @Parameter(hidden = true) @AuthenticationPrincipal MemberDetailsImpl memberDetails
+    ) {
+        return ResponseEntity.ok(orderService.orderBeverage(orderRequestDto, memberDetails.getUsername()));
     }
 
 }
