@@ -64,6 +64,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                 .antMatchers(HttpMethod.GET, "/api/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/members/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/members/signup").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/members/member-name/duplicate").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
