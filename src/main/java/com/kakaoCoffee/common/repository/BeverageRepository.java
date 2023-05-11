@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BeverageRepository extends JpaRepository<Beverage, Long> {
+public interface BeverageRepository extends JpaRepository<Beverage, Long>, BeverageRepositoryCustom {
+
     List<Beverage> findAll();
+
 }
