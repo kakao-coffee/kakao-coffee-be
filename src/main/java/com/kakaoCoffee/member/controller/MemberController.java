@@ -50,7 +50,7 @@ public class MemberController {
                     description = "로그인 실패",
                     content = @Content(
                             mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            examples = @ExampleObject(value = "{ \"errorType\": \"ILLEGAL_ARGUMENT_EXCEPTION\", \n\"errorMessage\":\"MEMBER_NOT_FOUND\" }")
+                            examples = @ExampleObject(value = "{ \"errorType\": \"ENTITY_NOT_FOUND_EXCEPTION\", \n\"errorMessage\":\"해당 사용자가 존재하지 않습니다.\" }")
                     )
             )
     })
