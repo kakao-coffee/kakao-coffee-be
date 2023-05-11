@@ -27,7 +27,7 @@ public class OrderService {
 
     @Transactional
     public OrderResponseDto orderBeverage(OrderRequestDto orderRequestDto) {
-        Member member = memberRepository.findById(orderRequestDto.getMemberId()).orElseThrow(
+        Member member = memberRepository.findById(orderRequestDto.getMemberName()).orElseThrow(
                 () -> new EntityNotFoundException(ErrorMessage.MEMBER_NOT_FOUND.getMessage())
         );
 

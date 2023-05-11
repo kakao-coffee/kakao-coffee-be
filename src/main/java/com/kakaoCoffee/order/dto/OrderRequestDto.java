@@ -14,6 +14,6 @@ public class OrderRequestDto {
     private Long beverageId;
 
     @Schema(example = "21")
-    private Long memberId;
+    private Long memberName;
 
 }

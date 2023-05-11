@@ -41,8 +41,8 @@ public class MemberController {
 
     @GetMapping("/member-id/duplicate")
     @Operation(summary = "아이디 중복체크", description = "아이디 중복이면 true, 중복이 아니면 false")
-    public ResponseEntity<Boolean> checkMemberId(@RequestParam String memberId) {
-        return ResponseEntity.ok(memberService.checkMemberIdDuplication(memberId));
+    public ResponseEntity<Boolean> checkMemberName(@RequestParam String memberName) {
+        return ResponseEntity.ok(memberService.checkMemberNameDuplication(memberName));
     }
 
     @PatchMapping("/point")

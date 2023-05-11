@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class SignupRequestDto {
 
-    private String memberId;
+    private String memberName;
 
     private String nickName;
 

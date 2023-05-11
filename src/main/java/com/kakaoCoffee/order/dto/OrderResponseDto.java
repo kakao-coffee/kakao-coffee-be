@@ -14,7 +14,7 @@ import lombok.Setter;
 public class OrderResponseDto {
 
     @Schema(example = "member")
-    private String memberId;
+    private String memberName;
 
     @Schema(example = "13")
     private Long beverageId;
@@ -27,7 +27,7 @@ public class OrderResponseDto {
 
     public static OrderResponseDto from(Member member, Order order) {
         return OrderResponseDto.builder()
-                .memberId(member.getMemberId())
+                .memberName(member.getMemberName())
                 .beverageId(order.getBeverage().getId())
                 .beverageName(order.getBeverage().getBeverageName())
                 .orderCost(order.getBeverage().getCost())
