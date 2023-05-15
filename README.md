@@ -5,7 +5,7 @@
 
 
 ## ERD
-<img src=https://user-images.githubusercontent.com/44993366/236722834-86281886-6bd8-419a-ba6d-8bc32de3befa.png>
+<img src=https://user-images.githubusercontent.com/44993366/237034770-7d82c4a4-b897-40c3-9de1-9fe8931208e4.png>
 
 
 ## Git convention

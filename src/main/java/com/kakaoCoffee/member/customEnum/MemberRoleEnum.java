@@ -1,4 +1,4 @@
-package com.kakaoCoffee.common.customEnum;
+package com.kakaoCoffee.member.customEnum;
 
 public enum MemberRoleEnum {
     USER("USER"),  // 사용자 권한

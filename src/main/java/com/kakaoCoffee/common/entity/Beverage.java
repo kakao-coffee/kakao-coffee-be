@@ -1,18 +1,15 @@
 package com.kakaoCoffee.common.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity(name = "coffees")
+@Entity(name = "beverages")
 @Getter
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Coffee extends Timestamped {
+public class Beverage extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +21,11 @@ public class Coffee extends Timestamped {
     @Column(name = "cost", nullable = false)
     private Long cost;
 
-    @Column(name = "sale_count", nullable = false)
-    private Long saleCount;
+    public static Beverage create(String beverageName, Long cost) {
+        return Beverage.builder()
+                .beverageName(beverageName)
+                .cost(cost)
+                .build();
+    }
 
 }

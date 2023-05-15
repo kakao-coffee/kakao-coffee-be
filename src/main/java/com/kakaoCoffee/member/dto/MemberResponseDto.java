@@ -3,6 +3,7 @@ package com.kakaoCoffee.member.dto;
 import com.kakaoCoffee.common.entity.Member;
 import com.kakaoCoffee.common.entity.Timestamped;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,29 +12,32 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 public class MemberResponseDto extends Timestamped {
 
     @Schema(type = "integer", example = "2")
     private Long id;
 
-    @Schema(example = "userId")
-    private String userId;
-
     @Schema(example = "apple123")
-    private String username;
+    private String memberName;
+
+    @Schema(example = "15000")
+    private Long point;
+
+    @Schema(example = "apple121")
+    private String nickName;
 
     @Schema(example = "user@gmail.com")
     private String email;
 
-    @Schema(example = "user@gmail.com")
     private LocalDate birthday;
 
-    public static MemberResponseDto of(Member member) {
+    public static MemberResponseDto create(Member member) {
         return MemberResponseDto.builder()
                 .id(member.getId())
-                .username(member.getNickName())
-                .userId(member.getMemberName())
+                .memberName(member.getMemberName())
+                .point(member.getPoint())
+                .nickName(member.getNickName())
                 .email(member.getEmail())
                 .birthday(member.getBirthday())
                 .build();

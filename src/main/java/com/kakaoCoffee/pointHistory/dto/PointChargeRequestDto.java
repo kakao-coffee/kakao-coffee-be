@@ -10,9 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PointChargeRequestDto {
 
-    @Schema(example = "21")
-    private Long memberId;
-
     @Schema(example = "5000")
     private Long pointAmount;
 

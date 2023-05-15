@@ -1,15 +1,12 @@
 package com.kakaoCoffee.common.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity(name = "orders")
 @Getter
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Order extends Timestamped {
@@ -23,7 +20,18 @@ public class Order extends Timestamped {
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "coffee_id")
-    private Coffee coffee;
+    @JoinColumn(name = "beverage_id")
+    private Beverage beverage;
+
+    @Column(name = "cost", nullable = false)
+    private Long cost;
+
+    public static Order create(Member member, Beverage beverage, Long cost) {
+        return Order.builder()
+                .member(member)
+                .beverage(beverage)
+                .cost(cost)
+                .build();
+    }
 
 }

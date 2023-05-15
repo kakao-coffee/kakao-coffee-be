@@ -1,10 +1,9 @@
 package com.kakaoCoffee.common.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kakaoCoffee.common.dto.ApiResponse;
-import com.kakaoCoffee.common.dto.ErrorMessage;
+import com.kakaoCoffee.common.customEnum.ErrorMessage;
+import com.kakaoCoffee.common.customEnum.ErrorType;
 import com.kakaoCoffee.common.dto.ErrorResponseDto;
-import com.kakaoCoffee.common.dto.ErrorType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
@@ -18,8 +17,11 @@ import java.io.OutputStream;
 
 @Component
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-    private static final ErrorResponseDto ERROR_RESPONSE_DTO = ErrorResponseDto.of(ErrorType.ACCESS_DENIED_EXCEPTION,
-            ErrorMessage.ACCESS_DENIED.getMessage());
+    private static final ErrorResponseDto ERROR_RESPONSE_DTO = ErrorResponseDto.create(
+            ErrorType.ACCESS_DENIED_EXCEPTION,
+            ErrorMessage.ACCESS_DENIED.getMessage()
+    );
+
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException{
@@ -29,7 +31,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
         try (OutputStream os = response.getOutputStream()) {
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writeValue(os, ApiResponse.failOf(HttpStatus.FORBIDDEN, ERROR_RESPONSE_DTO));
+            objectMapper.writeValue(os, ERROR_RESPONSE_DTO);
             os.flush();
         }
     }

@@ -1,16 +1,13 @@
 package com.kakaoCoffee.common.entity;
 
 import com.kakaoCoffee.common.customEnum.TradeType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity(name = "point_histories")
 @Getter
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
 public class PointHistory extends Timestamped {
@@ -29,5 +26,13 @@ public class PointHistory extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
+
+    public static PointHistory create(Member member, Long pointAmount, TradeType tradeType) {
+        return PointHistory.builder()
+                .member(member)
+                .pointAmount(pointAmount)
+                .tradeType(tradeType)
+                .build();
+    }
 
 }
