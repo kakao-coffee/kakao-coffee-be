@@ -17,7 +17,7 @@ import java.io.OutputStream;
 
 @Component
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-    private static final ErrorResponseDto ERROR_RESPONSE_DTO = ErrorResponseDto.of(
+    private static final ErrorResponseDto ERROR_RESPONSE_DTO = ErrorResponseDto.create(
             ErrorType.ACCESS_DENIED_EXCEPTION,
             ErrorMessage.ACCESS_DENIED.getMessage()
     );

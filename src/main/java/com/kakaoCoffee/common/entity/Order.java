@@ -26,7 +26,7 @@ public class Order extends Timestamped {
     @Column(name = "cost", nullable = false)
     private Long cost;
 
-    public static Order from(Member member, Beverage beverage, Long cost) {
+    public static Order create(Member member, Beverage beverage, Long cost) {
         return Order.builder()
                 .member(member)
                 .beverage(beverage)

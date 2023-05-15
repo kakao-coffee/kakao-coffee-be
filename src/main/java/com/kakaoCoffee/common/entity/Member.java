@@ -41,7 +41,7 @@ public class Member extends Timestamped {
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
 
-    public static Member from(SignupRequestDto signupRequestDto, String encodedPassword, MemberRoleEnum memberRoleEnum) {
+    public static Member create(SignupRequestDto signupRequestDto, String encodedPassword, MemberRoleEnum memberRoleEnum) {
         return Member.builder()
                 .memberName(signupRequestDto.getMemberName())
                 .password(encodedPassword)

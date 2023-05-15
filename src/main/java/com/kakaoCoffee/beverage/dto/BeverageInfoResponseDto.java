@@ -19,7 +19,7 @@ public class BeverageInfoResponseDto {
     @Schema(example = "5000")
     private Long beverageCost;
 
-    public static BeverageInfoResponseDto from(Beverage beverage) {
+    public static BeverageInfoResponseDto create(Beverage beverage) {
         return BeverageInfoResponseDto.builder()
                 .beverageId(beverage.getId())
                 .beverageName(beverage.getBeverageName())

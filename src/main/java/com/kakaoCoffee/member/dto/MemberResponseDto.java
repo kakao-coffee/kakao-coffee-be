@@ -32,7 +32,7 @@ public class MemberResponseDto extends Timestamped {
 
     private LocalDate birthday;
 
-    public static MemberResponseDto from(Member member) {
+    public static MemberResponseDto create(Member member) {
         return MemberResponseDto.builder()
                 .id(member.getId())
                 .memberName(member.getMemberName())

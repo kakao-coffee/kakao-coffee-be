@@ -48,11 +48,11 @@ public class OrderService {
             member.setPoint(member.getPoint() - cost);
         }
 
-        Order newOrder = orderRepository.save(Order.from(member, beverage, cost));
+        Order newOrder = orderRepository.save(Order.create(member, beverage, cost));
 
-        pointHistoryRepository.save(PointHistory.of(member, cost, TradeType.SPEND));
+        pointHistoryRepository.save(PointHistory.create(member, cost, TradeType.SPEND));
 
-        return OrderResponseDto.from(member, newOrder);
+        return OrderResponseDto.create(member, newOrder);
     }
 
 }

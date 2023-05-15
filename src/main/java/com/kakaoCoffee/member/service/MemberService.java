@@ -45,10 +45,10 @@ public class MemberService {
             throw new IllegalArgumentException(ErrorMessage.MEMBER_NAME_DUPLICATION.getMessage());
         }
 
-        Member newMember = Member.from(signupRequestDto, encodedPassword, MemberRoleEnum.USER);
+        Member newMember = Member.create(signupRequestDto, encodedPassword, MemberRoleEnum.USER);
         newMember = memberRepository.save(newMember);
 
-        return MemberResponseDto.from(newMember);
+        return MemberResponseDto.create(newMember);
     }
 
     @Transactional(readOnly = true)
@@ -65,7 +65,7 @@ public class MemberService {
         }
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(member.getMemberName()));
 
-        return MemberResponseDto.from(member);
+        return MemberResponseDto.create(member);
     }
 
     @Transactional
@@ -81,9 +81,9 @@ public class MemberService {
 
         member.setPoint(member.getPoint() + pointChargeRequestDto.getPointAmount());
 
-        pointHistoryRepository.save(PointHistory.of(member, pointChargeRequestDto.getPointAmount(), TradeType.CHARGE));
+        pointHistoryRepository.save(PointHistory.create(member, pointChargeRequestDto.getPointAmount(), TradeType.CHARGE));
 
-        return MemberResponseDto.from(member);
+        return MemberResponseDto.create(member);
     }
 
 }

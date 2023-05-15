@@ -22,7 +22,7 @@ public class BeverageService {
     public List<BeverageInfoResponseDto> getAllBeverages() {
         return beverageRepository.findAll()
                 .stream()
-                .map(beverage -> BeverageInfoResponseDto.from(beverage))
+                .map(beverage -> BeverageInfoResponseDto.create(beverage))
                 .collect(Collectors.toList());
     }
 

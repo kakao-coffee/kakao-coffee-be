@@ -50,7 +50,7 @@ public class OrderIntegrationTests {
     void setUp() {
         Member newMember = new Member(1L, "memberName", "password", 6000L, MemberRoleEnum.USER, "nickName", "member@gmail.com", LocalDate.now());
         this.savedMember = memberRepository.save(newMember);
-        this.savedBeverage = beverageRepository.save(Beverage.of("Americano", 2000L));
+        this.savedBeverage = beverageRepository.save(Beverage.create("Americano", 2000L));
     }
 
     @DisplayName("order concurrency test")

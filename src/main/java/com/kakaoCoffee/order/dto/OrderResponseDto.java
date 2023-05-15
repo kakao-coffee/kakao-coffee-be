@@ -22,7 +22,7 @@ public class OrderResponseDto {
     @Schema(example = "5000")
     private Long orderCost;
 
-    public static OrderResponseDto from(Member member, Order order) {
+    public static OrderResponseDto create(Member member, Order order) {
         return OrderResponseDto.builder()
                 .memberName(member.getMemberName())
                 .beverageId(order.getBeverage().getId())

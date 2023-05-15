@@ -16,7 +16,7 @@ public class ErrorResponseDto {
 
     String errorMessage;
 
-    public static ErrorResponseDto of(ErrorType errorType, String errorMessage) {
+    public static ErrorResponseDto create(ErrorType errorType, String errorMessage) {
         return ErrorResponseDto.builder()
                 .errorType(errorType)
                 .errorMessage(errorMessage)
