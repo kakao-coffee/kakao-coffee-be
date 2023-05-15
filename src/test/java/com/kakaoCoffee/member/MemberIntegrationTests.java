@@ -7,17 +7,16 @@ import com.kakaoCoffee.member.customEnum.MemberRoleEnum;
 import com.kakaoCoffee.member.service.MemberService;
 import com.kakaoCoffee.pointHistory.dto.PointChargeRequestDto;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.concurrent.CompletableFuture;
+
 
 @ActiveProfiles("test")
 @SpringBootTest
@@ -25,6 +24,9 @@ import java.util.concurrent.CompletableFuture;
 public class MemberIntegrationTests {
 
     private Member savedMember;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private MemberRepository memberRepository;
@@ -40,7 +42,7 @@ public class MemberIntegrationTests {
 
     @DisplayName("Member's point charge concurrency test")
     @Test
-    void memberConcurrentPointCharge() {
+    void memberPointChargeConcurrencyTest() {
         // given
         PointChargeRequestDto pointChargeRequestDto = new PointChargeRequestDto(10L);
 
@@ -56,6 +58,14 @@ public class MemberIntegrationTests {
                 () -> new EntityNotFoundException(ErrorMessage.MEMBER_NOT_FOUND.getMessage())
         );
         Assertions.assertEquals(pointChargeRequestDto.getPointAmount() * 3, updatedMember.getPoint());
+    }
+
+    @AfterEach
+    public void cleanup() {
+        jdbcTemplate.execute("DELETE FROM point_histories");
+        jdbcTemplate.execute("DELETE FROM orders");
+        jdbcTemplate.execute("DELETE FROM members");
+        jdbcTemplate.execute("DELETE FROM beverages");
     }
 
 }
