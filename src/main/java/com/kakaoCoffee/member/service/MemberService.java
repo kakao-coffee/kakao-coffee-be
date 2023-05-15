@@ -1,9 +1,12 @@
 package com.kakaoCoffee.member.service;
 
 import com.kakaoCoffee.common.customEnum.ErrorMessage;
+import com.kakaoCoffee.common.customEnum.TradeType;
 import com.kakaoCoffee.common.entity.Member;
+import com.kakaoCoffee.common.entity.PointHistory;
 import com.kakaoCoffee.common.jwt.JwtUtil;
 import com.kakaoCoffee.common.repository.MemberRepository;
+import com.kakaoCoffee.common.repository.PointHistoryRepository;
 import com.kakaoCoffee.member.customEnum.MemberRoleEnum;
 import com.kakaoCoffee.member.dto.LoginRequestDto;
 import com.kakaoCoffee.member.dto.MemberResponseDto;
@@ -28,6 +31,8 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     private final MemberRepository memberRepository;
+
+    private final PointHistoryRepository pointHistoryRepository;
 
     @Transactional
     public MemberResponseDto signup(SignupRequestDto signupRequestDto) {
@@ -75,6 +80,8 @@ public class MemberService {
         );
 
         member.setPoint(member.getPoint() + pointChargeRequestDto.getPointAmount());
+
+        pointHistoryRepository.save(PointHistory.of(member, pointChargeRequestDto.getPointAmount(), TradeType.CHARGE));
 
         return MemberResponseDto.from(member);
     }

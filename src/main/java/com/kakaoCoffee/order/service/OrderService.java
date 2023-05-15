@@ -1,12 +1,15 @@
 package com.kakaoCoffee.order.service;
 
 import com.kakaoCoffee.common.customEnum.ErrorMessage;
+import com.kakaoCoffee.common.customEnum.TradeType;
 import com.kakaoCoffee.common.entity.Beverage;
 import com.kakaoCoffee.common.entity.Member;
 import com.kakaoCoffee.common.entity.Order;
+import com.kakaoCoffee.common.entity.PointHistory;
 import com.kakaoCoffee.common.repository.BeverageRepository;
 import com.kakaoCoffee.common.repository.MemberRepository;
 import com.kakaoCoffee.common.repository.OrderRepository;
+import com.kakaoCoffee.common.repository.PointHistoryRepository;
 import com.kakaoCoffee.order.dto.OrderRequestDto;
 import com.kakaoCoffee.order.dto.OrderResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +27,8 @@ public class OrderService {
     private final BeverageRepository beverageRepository;
 
     private final OrderRepository orderRepository;
+
+    private final PointHistoryRepository pointHistoryRepository;
 
     @Transactional
     public OrderResponseDto orderBeverage(OrderRequestDto orderRequestDto, String memberName) {
@@ -44,6 +49,8 @@ public class OrderService {
         }
 
         Order newOrder = orderRepository.save(Order.from(member, beverage, cost));
+
+        pointHistoryRepository.save(PointHistory.of(member, cost, TradeType.SPEND));
 
         return OrderResponseDto.from(member, newOrder);
     }

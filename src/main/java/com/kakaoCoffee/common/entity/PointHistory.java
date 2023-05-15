@@ -30,4 +30,12 @@ public class PointHistory extends Timestamped {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
+    public static PointHistory of(Member member, Long pointAmount, TradeType tradeType) {
+        return PointHistory.builder()
+                .member(member)
+                .pointAmount(pointAmount)
+                .tradeType(tradeType)
+                .build();
+    }
+
 }
