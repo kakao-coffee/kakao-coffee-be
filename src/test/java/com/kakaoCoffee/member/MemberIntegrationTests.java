@@ -3,6 +3,7 @@ package com.kakaoCoffee.member;
 import com.kakaoCoffee.common.customEnum.ErrorMessage;
 import com.kakaoCoffee.common.entity.Member;
 import com.kakaoCoffee.common.repository.MemberRepository;
+import com.kakaoCoffee.db.DatabaseTestUtil;
 import com.kakaoCoffee.member.customEnum.MemberRoleEnum;
 import com.kakaoCoffee.member.service.MemberService;
 import com.kakaoCoffee.pointHistory.dto.PointChargeRequestDto;
@@ -10,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.EntityNotFoundException;
@@ -26,7 +26,7 @@ public class MemberIntegrationTests {
     private Member savedMember;
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private DatabaseTestUtil databaseTestUtil;
 
     @Autowired
     private MemberRepository memberRepository;
@@ -61,11 +61,8 @@ public class MemberIntegrationTests {
     }
 
     @AfterEach
-    public void cleanUp() {
-        jdbcTemplate.execute("DELETE FROM point_histories");
-        jdbcTemplate.execute("DELETE FROM orders");
-        jdbcTemplate.execute("DELETE FROM members");
-        jdbcTemplate.execute("DELETE FROM beverages");
+    public void setDown() {
+        databaseTestUtil.cleanUp();
     }
 
 }
