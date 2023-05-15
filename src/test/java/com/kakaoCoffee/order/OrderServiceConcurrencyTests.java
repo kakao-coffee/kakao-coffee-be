@@ -25,7 +25,7 @@ import java.util.concurrent.CompletableFuture;
 @ActiveProfiles("test")
 @SpringBootTest
 @Slf4j
-public class OrderIntegrationTests {
+public class OrderServiceConcurrencyTests {
 
     private Member savedMember;
 
@@ -55,7 +55,7 @@ public class OrderIntegrationTests {
 
     @DisplayName("order concurrency test")
     @Test
-    void orderConcurrencyTest() {
+    void orderServiceOrderBeverageConcurrencyTest() {
         // given
         OrderRequestDto orderRequestDto = new OrderRequestDto(savedBeverage.getId());
 
