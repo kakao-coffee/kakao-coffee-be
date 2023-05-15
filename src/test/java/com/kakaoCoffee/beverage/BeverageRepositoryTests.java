@@ -7,13 +7,9 @@ import com.kakaoCoffee.common.entity.Order;
 import com.kakaoCoffee.common.repository.BeverageRepository;
 import com.kakaoCoffee.common.repository.MemberRepository;
 import com.kakaoCoffee.common.repository.OrderRepository;
-import com.kakaoCoffee.db.DatabaseTestUtil;
 import com.kakaoCoffee.member.customEnum.MemberRoleEnum;
-import com.kakaoCoffee.order.dto.OrderRequestDto;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ActiveProfiles("test")
 @SpringBootTest
@@ -69,9 +67,9 @@ public class BeverageRepositoryTests {
 
         // then
         List<BeverageSaleResponseDto> beverageSaleResponseDtos = beverageRepository.getPopularBeverages();
-        Assertions.assertEquals(3L, beverageSaleResponseDtos.get(0).getSaleCount());
-        Assertions.assertEquals(2L, beverageSaleResponseDtos.get(1).getSaleCount());
-        Assertions.assertEquals(1L, beverageSaleResponseDtos.get(2).getSaleCount());
+        assertEquals(3L, beverageSaleResponseDtos.get(0).getSaleCount());
+        assertEquals(2L, beverageSaleResponseDtos.get(1).getSaleCount());
+        assertEquals(1L, beverageSaleResponseDtos.get(2).getSaleCount());
     }
 
 }

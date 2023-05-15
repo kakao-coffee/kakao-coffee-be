@@ -17,6 +17,8 @@ import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.concurrent.CompletableFuture;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @ActiveProfiles("test")
 @SpringBootTest
@@ -56,7 +58,7 @@ public class MemberIntegrationTests {
         Member updatedMember = memberRepository.findByMemberName(savedMember.getMemberName()).orElseThrow(
                 () -> new EntityNotFoundException(ErrorMessage.MEMBER_NOT_FOUND.getMessage())
         );
-        Assertions.assertEquals(pointChargeRequestDto.getPointAmount() * 3, updatedMember.getPoint());
+        assertEquals(pointChargeRequestDto.getPointAmount() * 3, updatedMember.getPoint());
     }
 
     @AfterEach

@@ -4,7 +4,6 @@ import com.kakaoCoffee.beverage.dto.BeverageInfoResponseDto;
 import com.kakaoCoffee.beverage.service.BeverageService;
 import com.kakaoCoffee.common.entity.Beverage;
 import com.kakaoCoffee.common.repository.BeverageRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -13,7 +12,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -44,7 +43,7 @@ public class BeverageServiceTests {
 
         // then
         verify(beverageRepository).findAll();
-        Assertions.assertEquals(beverages.size(), foundBeverages.size());
+        assertEquals(beverages.size(), foundBeverages.size());
     }
 
 }

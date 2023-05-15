@@ -22,6 +22,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @ActiveProfiles("test")
 @SpringBootTest
 @Slf4j
@@ -67,12 +69,12 @@ public class OrderIntegrationTests {
 
         // then
         List<Order> orders = orderRepository.findAll();
-        Assertions.assertEquals(3L, orders.size());
+        assertEquals(3L, orders.size());
 
         Member updatedMember = memberRepository.findByMemberName(savedMember.getMemberName()).orElseThrow(
                 () -> new EntityNotFoundException(ErrorMessage.MEMBER_NOT_FOUND.getMessage())
         );
-        Assertions.assertEquals(0L, updatedMember.getPoint());
+        assertEquals(0L, updatedMember.getPoint());
     }
 
     @AfterEach
