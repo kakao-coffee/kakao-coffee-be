@@ -3,14 +3,11 @@ package com.kakaoCoffee.order.dto;
 import com.kakaoCoffee.common.entity.Member;
 import com.kakaoCoffee.common.entity.Order;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 public class OrderResponseDto {
 
     @Schema(example = "member")

@@ -1,16 +1,13 @@
 package com.kakaoCoffee.common.entity;
 
 import com.kakaoCoffee.common.customEnum.TradeType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity(name = "point_histories")
 @Getter
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
 public class PointHistory extends Timestamped {

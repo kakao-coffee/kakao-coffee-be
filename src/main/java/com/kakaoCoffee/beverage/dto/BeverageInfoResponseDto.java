@@ -2,14 +2,11 @@ package com.kakaoCoffee.beverage.dto;
 
 import com.kakaoCoffee.common.entity.Beverage;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class BeverageInfoResponseDto {
 

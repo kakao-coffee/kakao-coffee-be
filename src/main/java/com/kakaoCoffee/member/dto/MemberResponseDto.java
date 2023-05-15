@@ -3,6 +3,7 @@ package com.kakaoCoffee.member.dto;
 import com.kakaoCoffee.common.entity.Member;
 import com.kakaoCoffee.common.entity.Timestamped;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 public class MemberResponseDto extends Timestamped {
 
     @Schema(type = "integer", example = "2")

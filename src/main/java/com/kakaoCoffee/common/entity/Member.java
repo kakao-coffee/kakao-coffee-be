@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Entity(name = "members")
 @Getter
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member extends Timestamped {
