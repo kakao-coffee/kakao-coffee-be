@@ -55,7 +55,7 @@ public class OrderIntegrationTests {
 
     @DisplayName("order concurrency test")
     @Test
-    void orderConcurrency() {
+    void orderConcurrencyTest() {
         // given
         OrderRequestDto orderRequestDto = new OrderRequestDto(savedBeverage.getId());
 
@@ -77,7 +77,7 @@ public class OrderIntegrationTests {
     }
 
     @AfterEach
-    public void cleanup() {
+    public void cleanUp() {
         jdbcTemplate.execute("DELETE FROM point_histories");
         jdbcTemplate.execute("DELETE FROM orders");
         jdbcTemplate.execute("DELETE FROM members");

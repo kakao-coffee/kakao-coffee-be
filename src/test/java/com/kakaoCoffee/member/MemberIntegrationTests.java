@@ -61,7 +61,7 @@ public class MemberIntegrationTests {
     }
 
     @AfterEach
-    public void cleanup() {
+    public void cleanUp() {
         jdbcTemplate.execute("DELETE FROM point_histories");
         jdbcTemplate.execute("DELETE FROM orders");
         jdbcTemplate.execute("DELETE FROM members");
