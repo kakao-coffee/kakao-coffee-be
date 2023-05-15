@@ -24,4 +24,11 @@ public class Beverage extends Timestamped {
     @Column(name = "cost", nullable = false)
     private Long cost;
 
+    public static Beverage of(String beverageName, Long cost) {
+        return Beverage.builder()
+                .beverageName(beverageName)
+                .cost(cost)
+                .build();
+    }
+
 }
