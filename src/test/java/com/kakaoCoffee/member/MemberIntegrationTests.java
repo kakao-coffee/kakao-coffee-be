@@ -21,7 +21,7 @@ import java.util.concurrent.CompletableFuture;
 @ActiveProfiles("test")
 @SpringBootTest
 @Slf4j
-public class MemberServiceConcurrencyTests {
+public class MemberIntegrationTests {
 
     private Member savedMember;
 
@@ -40,9 +40,8 @@ public class MemberServiceConcurrencyTests {
         this.savedMember = memberRepository.save(newMember);
     }
 
-    @DisplayName("Member's point charge concurrency test")
     @Test
-    void memberServiceChargePointConcurrencyTest() {
+    void shouldChargeAllThePoints() {
         // given
         PointChargeRequestDto pointChargeRequestDto = new PointChargeRequestDto(10L);
 

@@ -17,7 +17,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class BeverageServiceUnitTests {
+public class BeverageServiceTests {
 
     @Mock
     BeverageRepository beverageRepository;
@@ -31,7 +31,7 @@ public class BeverageServiceUnitTests {
     }
 
     @Test
-    void beverageServiceGetAllBeveragesTest() {
+    void shouldGetAllBeverages() {
         // given
         List<Beverage> beverages = Arrays.asList(
                 Beverage.create("Americano", 2000L),

@@ -49,9 +49,8 @@ public class BeverageRepositoryTests {
 
     }
 
-    @DisplayName("GetPopularBeverage's repository Test")
     @Test
-    void getPopularBeverageRepositoryTest() {
+    void shouldGetMostPopular3BeveragesAsDesc() {
         // given
         List<Beverage> savedBeverages = new ArrayList<>();
         savedBeverages.add(beverageRepository.save(Beverage.create("Americano", 2000L)));
