@@ -12,8 +12,10 @@ import lombok.Setter;
 @Builder(access = AccessLevel.PRIVATE)
 public class ErrorResponseDto {
 
+    @Schema(example = "EXAMPLE_EXCEPTION")
     ErrorType errorType;
 
+    @Schema(example = "example error message")
     String errorMessage;
 
     public static ErrorResponseDto create(ErrorType errorType, String errorMessage) {

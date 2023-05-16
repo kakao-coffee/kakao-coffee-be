@@ -15,7 +15,7 @@ class SwaggerConfig {
     public OpenAPI openAPI() {
 
         Info info = new Info()
-                .version("v1.0.0")
+                .version("v2.0.0")
                 .title("KAKAO COFFEE ☕")
                 .description("API Description");
 
