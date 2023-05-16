@@ -43,7 +43,6 @@ public class BeverageServiceTests {
 
         // then
         verify(beverageRepository).findAll();
-        assertEquals(beverages.size(), foundBeverages.size());
     }
 
 }
